@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("https://t4.ftcdn.net/jpg/06/70/47/83/360_F_670478365_rendlVf707cLCLdBEb2yM5EPW8xUL8bt.jpg");
+            color: rgb(255, 255, 255);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            width: 300px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+        .link-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .link-container a {
+            color: yellow;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .link-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <form id="loginForm">
+        <h2>User Login</h2>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Login</button>
+
+        <!-- Booking Link -->
+        <div class="link-container">
+            <a style="border: 1px solid blue; background-color: blue; color: white; padding: 10px; font-size: 10px; text-decoration: none; display: inline-block; text-align: center; border-radius: 5px; width: 100%;margin: 10px 0;" href="booking.html">Booking</a>
+        </div>
+
+        <p class="error" id="errorMessage"></p>
+    </form>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value;
+
+            // Basic validation
+            if (username === "" || password === "") {
+                displayError("Please enter both username and password.");
+                return;
+            }
+
+            // Check for admin credentials
+            if (username === "srija" && password === "12345") {
+                alert("Admin login successful!");
+                window.location.href = "admin1.html"; // Redirect to admin page
+                return;
+            }
+
+            // Check for regular user credentials
+            if (username === "prasha" && password === "123456789") {
+                alert("User login successful!");
+                // Redirect to user-specific page or perform other actions
+                return;
+            }
+
+            // If credentials are invalid
+            displayError("Invalid username or password. Please try again.");
+        });
+
+        function displayError(message) {
+            const errorMessage = document.getElementById("errorMessage");
+            errorMessage.textContent = message;
+        }
+    </script>
+</body>
+</html>
